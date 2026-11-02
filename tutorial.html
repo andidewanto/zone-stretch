@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zone Stretch Tutorial</title>
+<style>
+  :root { --ink:#1d2725; --muted:#5b6866; --teal:#005446; --orange:#E07A1F; --bg:#ffffff; --panel:#f3f7f6; --line:#d9e3e1; }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#e7eeec; --muted:#a3b2af; --teal:#5fc3ae; --orange:#f0a35e; --bg:#141a19; --panel:#1d2624; --line:#2c3836; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 820px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 30px; margin: 0 0 4px; color: var(--teal); }
+  .sub { color: var(--muted); margin: 0 0 28px; }
+  h2 { font-size: 21px; margin: 40px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--line); }
+  h3 { font-size: 17px; margin: 22px 0 8px; }
+  ol, ul { padding-left: 22px; }
+  li { margin: 4px 0; }
+  kbd { font: 13px ui-monospace, Menlo, monospace; background: var(--panel); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 1px 6px; }
+  code { font: 14px ui-monospace, Menlo, monospace; background: var(--panel); padding: 1px 5px; border-radius: 4px; }
+  .tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 12px 0; }
+  .tool { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: flex; gap: 12px; align-items: flex-start; }
+  .tool .ic { width: 40px; height: 40px; flex: none; background: #fff; border-radius: 8px; display: grid; place-items: center; border: 1px solid var(--line); }
+  .tool .ic svg { width: 28px; height: 28px; }
+  .tool b { display: block; }
+  .tool span { color: var(--muted); font-size: 14px; }
+  figure { margin: 16px 0; }
+  figure img { width: 100%; border-radius: 10px; border: 1px solid var(--line); background: #f8f8f8; }
+  figcaption { color: var(--muted); font-size: 14px; margin-top: 6px; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: var(--panel); }
+  .wrap { overflow-x: auto; }
+  .tip { background: var(--panel); border-left: 4px solid var(--orange); border-radius: 6px; padding: 10px 14px; margin: 14px 0; }
+  .tip b { color: var(--orange); }
+  .hero { display: flex; gap: 18px; align-items: center; margin: 0 0 28px; }
+  .hero img { width: 92px; height: 92px; flex: none; }
+  .hero h1 { margin: 0 0 2px; }
+  .hero .sub { margin: 0; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 13px; }
+  html[data-lang="en"] .id, html[data-lang="id"] .en { display: none !important; }
+  .langbar { display: flex; justify-content: flex-end; gap: 4px; margin: 0 0 12px; }
+  .langbar button { font: 600 13px -apple-system, "Segoe UI", sans-serif; padding: 4px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+  .langbar button[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #fff; }
+</style>
+<script>
+  // Bahasa: ?lang=en|id → pilihan terakhir → bahasa browser (id → Indonesia, lainnya Inggris).
+  (function () {
+    var d = document.documentElement, q = (location.search.match(/lang=(en|id)/) || [])[1], s = null;
+    try { s = localStorage.getItem('ad_lang'); } catch (e) {}
+    d.dataset.lang = q || s || ((navigator.language || '').toLowerCase().indexOf('id') === 0 ? 'id' : 'en');
+    d.lang = d.dataset.lang;
+  })();
+</script>
+</head>
+<body>
+<main>
+  <nav class="langbar" aria-label="Language"><button data-l="en">EN</button><button data-l="id">ID</button></nav>
+  <header class="hero">
+    <img src="images/zone-stretch-logo.png" alt="Zone Stretch logo">
+    <div>
+      <h1>Zone Stretch</h1>
+      <p class="sub en">Stretch or shrink only the part of an object between two limits — everything outside keeps its exact shape.</p>
+      <p class="sub id">Memanjangkan atau memendekkan hanya bagian objek di antara dua batas — bagian di luar zona tetap utuh.</p>
+    </div>
+  </header>
+
+  <figure>
+    <video src="videos/zone-stretch-how-to.mp4" poster="images/zone-stretch-video-poster.jpg" controls playsinline preload="metadata" style="width:100%;border-radius:10px;border:1px solid var(--line);background:#000"></video>
+    <figcaption class="en">How-to video (60 s): choose a direction, place the limits, type the new length.</figcaption>
+    <figcaption class="id">Video cara pakai (60 detik): pilih arah, pasang batas, ketik panjang baru.</figcaption>
+  </figure>
+
+  <h2><span class="en">1. Installation</span><span class="id">1. Instalasi</span></h2>
+  <ol class="en">
+    <li>Download <a href="downloads/ad_zone_stretch-1.4.0.rbz"><code>ad_zone_stretch-1.4.0.rbz</code></a>.</li>
+    <li>SketchUp: <b>Extensions › Extension Manager › Install Extension…</b> and choose the file.</li>
+    <li>Restart SketchUp. The <b>Zone Stretch</b> toolbar appears (otherwise <b>View › Toolbars</b>).</li>
+  </ol>
+  <ol class="id">
+    <li>Unduh <a href="downloads/ad_zone_stretch-1.4.0.rbz"><code>ad_zone_stretch-1.4.0.rbz</code></a>.</li>
+    <li>Di SketchUp: <b>Extensions › Extension Manager › Install Extension…</b> lalu pilih file tersebut.</li>
+    <li>Restart SketchUp. Toolbar <b>Zone Stretch</b> muncul (jika tidak: <b>View › Toolbars</b>).</li>
+  </ol>
+
+  <h2><span class="en">2. Stretch step by step</span><span class="id">2. Langkah demi langkah</span></h2>
+  <figure><img src="images/zone-stretch-2-how-it-works.png" alt="Zone Stretch Tool: direction planes and limits A and B"></figure>
+  <ol class="en">
+    <li><b>Select one group or component</b> — the object you want to change.</li>
+    <li>Start <b>Extensions › Zone Stretch › Zone Stretch Tool</b> (or the toolbar button, or right-click).</li>
+    <li><b>Choose the direction.</b> Red, green and blue planes appear across the object. Hover one to highlight it and click: red = width, green = depth, blue = height. The arrow keys work too: <kbd>→</kbd> red, <kbd>←</kbd> green, <kbd>↑</kbd> blue.</li>
+    <li><b>Place limit A.</b> The plane follows the cursor and snaps to points, edges and faces like the Move tool. Click where the zone should start.</li>
+    <li><b>Place limit B.</b> Click a second point, or type the exact distance from A and press <kbd>Enter</kbd>. The live distance is shown next to the planes and in the Measurements box.</li>
+    <li><b>Set the new zone length</b> — type it and press <kbd>Enter</kbd>, or move the mouse to preview and click. The tool closes when it is done.</li>
+  </ol>
+  <ol class="id">
+    <li><b>Pilih satu grup atau komponen</b> — objek yang ingin diubah.</li>
+    <li>Jalankan <b>Extensions › Zone Stretch › Zone Stretch Tool</b> (atau tombol toolbar, atau klik kanan).</li>
+    <li><b>Pilih arah.</b> Bidang merah, hijau dan biru muncul melintasi objek. Arahkan kursor untuk menyorot lalu klik: merah = lebar, hijau = kedalaman, biru = tinggi. Bisa juga dengan tombol panah: <kbd>→</kbd> merah, <kbd>←</kbd> hijau, <kbd>↑</kbd> biru.</li>
+    <li><b>Pasang batas A.</b> Bidang mengikuti kursor dan snap ke titik, edge dan face seperti alat Move. Klik di awal zona.</li>
+    <li><b>Pasang batas B.</b> Klik titik kedua, atau ketik jarak tepat dari A lalu <kbd>Enter</kbd>. Jarak tampil di samping bidang dan di kotak Measurements.</li>
+    <li><b>Tentukan panjang zona baru</b> — ketik lalu <kbd>Enter</kbd>, atau gerakkan mouse untuk pratinjau lalu klik. Alat tertutup otomatis setelah selesai.</li>
+  </ol>
+  <div class="tip en"><b>Tip:</b> you never need to click the Measurements box — just type while the tool is active.</div>
+  <div class="tip id"><b>Tips:</b> kotak Measurements tidak perlu diklik — langsung ketik saat alat aktif.</div>
+
+  <h2><span class="en">3. Three ways to type the length</span><span class="id">3. Tiga cara mengetik panjang</span></h2>
+  <div class="wrap"><table>
+    <tr><th><span class="en">You type</span><span class="id">Ketik</span></th><th><span class="en">Meaning</span><span class="id">Arti</span></th><th><span class="en">Gap 180 becomes</span><span class="id">Celah 180 menjadi</span></th></tr>
+    <tr><td><code>480</code></td><td><span class="en">New total length of the zone</span><span class="id">Panjang total zona yang baru</span></td><td>480</td></tr>
+    <tr><td><code>+200</code></td><td><span class="en">Add to the gap</span><span class="id">Tambah ke celah</span></td><td>380</td></tr>
+    <tr><td><code>-100</code></td><td><span class="en">Shrink the gap</span><span class="id">Kurangi celah</span></td><td>80</td></tr>
+  </table></div>
+  <p class="en">Numbers use the model's units; you can also type a unit, e.g. <code>48cm</code> or <code>+2"</code>. If a shrink is larger than the gap (e.g. <code>-200</code> on a 180 gap) you get a message and nothing changes.</p>
+  <p class="id">Angka memakai satuan model; bisa juga dengan satuan, mis. <code>48cm</code> atau <code>+2"</code>. Jika pengurangan lebih besar dari celah (mis. <code>-200</code> pada celah 180) muncul pesan dan tidak ada yang berubah.</p>
+  <figure><img src="images/zone-stretch-1-before-after.png" alt="Before and after: only the middle zone grew"></figure>
+
+  <h2><span class="en">4. Keys</span><span class="id">4. Tombol</span></h2>
+  <div class="wrap"><table>
+    <tr><td><kbd>→</kbd> <kbd>←</kbd> <kbd>↑</kbd></td><td><span class="en">Direction red / green / blue</span><span class="id">Arah merah / hijau / biru</span></td></tr>
+    <tr><td><kbd>Tab</kbd></td><td><span class="en">Which side stays fixed: lower, upper or centre</span><span class="id">Sisi yang tetap: bawah, atas atau tengah</span></td></tr>
+    <tr><td><kbd>Esc</kbd></td><td><span class="en">Go back one step</span><span class="id">Mundur satu langkah</span></td></tr>
+    <tr><td><kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>Z</kbd></td><td><span class="en">Undo the whole stretch in one step</span><span class="id">Batalkan seluruh stretch dalam satu langkah</span></td></tr>
+  </table></div>
+
+  <h2><span class="en">5. What happens to the model</span><span class="id">5. Apa yang terjadi pada model</span></h2>
+  <ul class="en">
+    <li>Parts that <b>cross</b> the zone are stretched; parts <b>beyond</b> it only move; parts <b>before</b> it stay put — at any depth of nested groups and components, without exploding anything.</li>
+    <li>Copies of the same component that change the same way keep sharing one definition; copies outside the object are never touched.</li>
+    <li>Arcs, curves, smooth surfaces, materials and textures keep their shape outside the zone. Text, dimensions, guides, images and section planes move along.</li>
+    <li>The limit planes are drawn on screen only — nothing is added to the model.</li>
+    <li>Locked objects are refused (right-click › Unlock first).</li>
+  </ul>
+  <ul class="id">
+    <li>Bagian yang <b>melintasi</b> zona ditarik; bagian <b>di seberang</b> zona hanya bergeser; bagian <b>sebelum</b> zona diam — pada grup/komponen bersarang sedalam apa pun, tanpa explode.</li>
+    <li>Salinan komponen yang berubah sama tetap berbagi satu definisi; salinan di luar objek tidak disentuh.</li>
+    <li>Busur, kurva, permukaan halus, material dan tekstur di luar zona tetap utuh. Teks, dimensi, guide, gambar dan section plane ikut bergeser.</li>
+    <li>Bidang batas hanya digambar di layar — tidak ada objek yang ditambahkan ke model.</li>
+    <li>Objek terkunci ditolak (klik kanan › Unlock dulu).</li>
+  </ul>
+  <div class="tip en"><b>Tip:</b> only the selected object stretches. To stretch a whole unit (frame, header, shelves…), group the parts first.</div>
+  <div class="tip id"><b>Tips:</b> hanya objek terpilih yang ditarik. Untuk satu unit utuh (rangka, header, rak…), gabungkan dulu dalam satu grup.</div>
+
+  <h2><span class="en">6. Limit objects (alternative)</span><span class="id">6. Objek batas (alternatif)</span></h2>
+  <p class="en">You can also select the object plus two flat, parallel objects or faces as limits and run <b>Extensions › Zone Stretch › Zone Stretch with Limit Objects…</b>.</p>
+  <p class="id">Bisa juga memilih objek ditambah dua objek/face datar yang sejajar sebagai batas, lalu <b>Extensions › Zone Stretch › Zone Stretch with Limit Objects…</b>.</p>
+
+  <h2>7. Uninstall</h2>
+  <p class="en"><b>Extensions › Extension Manager</b> › <b>Zone Stretch</b> › <b>Uninstall</b>, then restart SketchUp.</p>
+  <p class="id"><b>Extensions › Extension Manager</b> › <b>Zone Stretch</b> › <b>Uninstall</b>, lalu restart SketchUp.</p>
+
+  <footer><span class="en">Zone Stretch 1.4.0 · Andi Dewanto · Windows &amp; Mac · SketchUp 2021+ (tested on SketchUp 2026, macOS)</span><span class="id">Zone Stretch 1.4.0 · Andi Dewanto · Windows &amp; Mac · SketchUp 2021+ (diuji di SketchUp 2026, macOS)</span> · <a href="./">Zone Stretch</a> · <a href="https://andidewanto.github.io/sketchup-extensions/">More extensions</a></footer>
+</main>
+
+<script>
+  (function () {
+    var d = document.documentElement;
+    function sync() { document.querySelectorAll('.langbar button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.l === d.dataset.lang)); }); }
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('.langbar button');
+      if (!b) return;
+      d.dataset.lang = d.lang = b.dataset.l;
+      try { localStorage.setItem('ad_lang', b.dataset.l); } catch (err) {}
+      sync();
+    });
+    sync();
+  })();
+</script>
+</body>
+</html>

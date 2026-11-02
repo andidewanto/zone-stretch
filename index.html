@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zone Stretch — SketchUp extension by Andi Dewanto</title>
+<meta name="description" content="Zone Stretch 1.4.0 — Stretch or shrink only the part of an object between two limit planes; works inside nested groups and components. Free SketchUp extension by Andi Dewanto: download, tutorial and support (English / Indonesian).">
+<style>
+  :root { --ink:#1d2725; --muted:#5b6866; --teal:#005446; --orange:#E07A1F; --bg:#ffffff; --panel:#f3f7f6; --line:#d9e3e1; }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#e7eeec; --muted:#a3b2af; --teal:#5fc3ae; --orange:#f0a35e; --bg:#141a19; --panel:#1d2624; --line:#2c3836; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 900px; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font-size: 30px; margin: 0; color: var(--teal); }
+  .lead { color: var(--muted); margin: 6px 0 32px; }
+  h2 { font-size: 22px; margin: 0; }
+  h3 { font-size: 17px; margin: 24px 0 8px; }
+  .card { border: 1px solid var(--line); border-radius: 14px; padding: 22px; margin: 0 0 24px; background: var(--panel); }
+  .head { display: flex; gap: 16px; align-items: center; margin-bottom: 12px; }
+  .head img { width: 76px; height: 76px; flex: none; }
+  .ver { color: var(--muted); font-size: 14px; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin: 14px 0; }
+  .shots img { width: 100%; border-radius: 8px; border: 1px solid var(--line); background: #f8f8f8; }
+  .btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+  .btn { display: inline-block; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1px solid var(--teal); color: var(--teal); }
+  .btn.primary { background: var(--teal); color: #fff; }
+  ul, ol { padding-left: 22px; }
+  li { margin: 3px 0; }
+  .contact { border-left: 4px solid var(--orange); padding: 12px 16px; background: var(--panel); border-radius: 8px; }
+  footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+  html[data-lang="en"] .id, html[data-lang="id"] .en { display: none !important; }
+  .langbar { display: flex; justify-content: flex-end; gap: 4px; margin: 0 0 12px; }
+  .langbar button { font: 600 13px -apple-system, "Segoe UI", sans-serif; padding: 4px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+  .langbar button[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #fff; }
+</style>
+<script>
+  // Bahasa: ?lang=en|id → pilihan terakhir → bahasa browser (id → Indonesia, lainnya Inggris).
+  (function () {
+    var d = document.documentElement, q = (location.search.match(/lang=(en|id)/) || [])[1], s = null;
+    try { s = localStorage.getItem('ad_lang'); } catch (e) {}
+    d.dataset.lang = q || s || ((navigator.language || '').toLowerCase().indexOf('id') === 0 ? 'id' : 'en');
+    d.lang = d.dataset.lang;
+  })();
+</script>
+</head>
+<body>
+<main>
+  <nav class="langbar" aria-label="Language"><button data-l="en">EN</button><button data-l="id">ID</button></nav>
+  <h1>Zone Stretch</h1>
+  <p class="lead en">Free SketchUp extension by Andi Dewanto · Windows &amp; macOS · SketchUp 2021+.</p>
+  <p class="lead id">Extension SketchUp gratis oleh Andi Dewanto · Windows &amp; macOS · SketchUp 2021+.</p>
+
+  <section class="card" id="zone-stretch">
+    <div class="head"><img src="images/zone-stretch-logo.png" alt="Zone Stretch logo"><div><h2>Zone Stretch</h2><div class="ver"><span class="en">Version</span><span class="id">Versi</span> 1.4.0</div></div></div>
+    <p class="en">Make one part of a model longer or shorter — only between two limit planes — while everything outside keeps its exact shape. Pick a direction (red, green or blue plane), click limits A and B, then type the new length (<code>480</code>), a change (<code>+200</code>) or a shrink (<code>-100</code>). Works deep inside nested groups and components without exploding them; shared components stay shared.</p>
+    <p class="id">Memanjangkan atau memendekkan satu bagian model — hanya di antara dua bidang batas — sementara bagian lain tetap utuh. Pilih arah (bidang merah, hijau atau biru), klik batas A dan B, lalu ketik panjang baru (<code>480</code>), penambahan (<code>+200</code>) atau pengurangan (<code>-100</code>). Bekerja di dalam grup dan komponen bersarang tanpa explode; komponen bersama tetap berbagi definisi.</p>
+    <video src="videos/zone-stretch-how-to.mp4" poster="images/zone-stretch-video-poster.jpg" controls playsinline preload="metadata" style="width:100%;border-radius:8px;border:1px solid var(--line);background:#000;margin-top:6px"></video>
+    <div class="shots"><img src="images/zone-stretch-1-before-after.png" alt="Before and after: only the middle zone grew"><img src="images/zone-stretch-2-how-it-works.png" alt="Zone Stretch Tool steps"></div>
+    <div class="btns"><a class="btn primary" href="downloads/ad_zone_stretch-1.4.0.rbz">Download .rbz</a><a class="btn" href="tutorial.html">Tutorial</a></div>
+  </section>
+
+  <h3><span class="en">Installation</span><span class="id">Instalasi</span></h3>
+  <ol class="en">
+    <li>Download the <code>.rbz</code> above.</li>
+    <li>SketchUp: <b>Extensions › Extension Manager › Install Extension…</b> and choose the <code>.rbz</code>.</li>
+    <li>The toolbar appears automatically (otherwise <b>View › Toolbars</b>). Full guide: <a href="tutorial.html">Tutorial</a>.</li>
+  </ol>
+  <ol class="id">
+    <li>Unduh file <code>.rbz</code> di atas.</li>
+    <li>Di SketchUp: <b>Extensions › Extension Manager › Install Extension…</b> lalu pilih file <code>.rbz</code>.</li>
+    <li>Toolbar muncul otomatis (jika tidak: <b>View › Toolbars</b>). Panduan lengkap: <a href="tutorial.html">Tutorial</a>.</li>
+  </ol>
+
+  <h3>FAQ</h3>
+  <ul class="en">
+    <li><b>Only part of my model changed.</b> Only the selected object stretches — group the parts (frame, header, shelves…) first to stretch them together.</li>
+    <li><b>"Cannot shrink by …"</b> A shrink (<code>-…</code>) must be smaller than the gap between A and B. Type a smaller amount, or type the new length without a sign.</li>
+    <li><b>Interface language.</b> The extension uses an English interface; the tutorial and this page are available in English and Indonesian.</li>
+    <li><b>Uninstall.</b> Extension Manager › select the extension › Uninstall.</li>
+  </ul>
+  <ul class="id">
+    <li><b>Hanya sebagian model yang berubah.</b> Hanya objek terpilih yang ditarik — gabungkan dulu bagian-bagiannya (rangka, header, rak…) dalam satu grup.</li>
+    <li><b>"Cannot shrink by …"</b> Pengurangan (<code>-…</code>) harus lebih kecil dari celah antara A dan B. Ketik angka lebih kecil, atau ketik panjang baru tanpa tanda.</li>
+    <li><b>Bahasa antarmuka.</b> Menu dan dialog extension memakai bahasa Inggris; tutorial dan halaman ini tersedia dalam bahasa Inggris dan Indonesia.</li>
+    <li><b>Uninstall.</b> Extension Manager › pilih extension › Uninstall.</li>
+  </ul>
+
+  <h3><span class="en">Contact &amp; bug reports</span><span class="id">Kontak &amp; laporan bug</span></h3>
+  <div class="contact en">Email <a href="mailto:andidewanto@gmail.com">andidewanto@gmail.com</a> — please include your SketchUp version, operating system, the extension version and, if possible, a small .skp that shows the problem.</div>
+  <div class="contact id">Email <a href="mailto:andidewanto@gmail.com">andidewanto@gmail.com</a> — sertakan versi SketchUp, sistem operasi, versi extension, dan bila bisa file .skp kecil yang menunjukkan masalahnya.</div>
+
+  <p><a class="btn" href="https://andidewanto.github.io/sketchup-extensions/"><span class="en">More SketchUp extensions by Andi Dewanto</span><span class="id">Extension SketchUp lain oleh Andi Dewanto</span></a></p>
+
+  <footer><span class="en">© 2026 Andi Dewanto · Zone Stretch is an independent extension and is not affiliated with Trimble or SketchUp.</span><span class="id">© 2026 Andi Dewanto · Zone Stretch adalah extension independen dan tidak berafiliasi dengan Trimble atau SketchUp.</span></footer>
+</main>
+<script>
+  (function () {
+    var d = document.documentElement;
+    function sync() { document.querySelectorAll('.langbar button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.l === d.dataset.lang)); }); }
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('.langbar button');
+      if (!b) return;
+      d.dataset.lang = d.lang = b.dataset.l;
+      try { localStorage.setItem('ad_lang', b.dataset.l); } catch (err) {}
+      sync();
+    });
+    sync();
+  })();
+</script>
+</body>
+</html>
