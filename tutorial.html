@@ -24,11 +24,10 @@
   body { margin:0; background:var(--desk); color:var(--ink); font:15px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  .window { max-width: 1120px; margin: 28px auto; background: var(--win); border-radius: 12px; box-shadow: var(--shadow); overflow: clip; border: 1px solid var(--line); }
+  .window { background: var(--win); min-height: 100vh; }
+  .brand { display: block; width: 60px; height: 60px; margin: 0 0 10px; }
+  .brand img, .hero .brand img { width: 100%; height: 100%; display: block; }
   .titlebar { position: sticky; top: 0; z-index: 5; height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 14px; background: color-mix(in srgb, var(--bar) 88%, transparent); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
-  .lights { display: flex; gap: 8px; flex: none; }
-  .lights i { width: 12px; height: 12px; border-radius: 50%; display: block; background: #ff5f57; box-shadow: inset 0 0 0 .5px rgba(0,0,0,.2); }
-  .lights i:nth-child(2) { background: #febc2e; } .lights i:nth-child(3) { background: #28c840; }
   .titlebar .title { flex: 1; text-align: center; font-weight: 600; font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .langbar { display: flex; flex: none; background: var(--sel); border-radius: 7px; padding: 2px; gap: 0; margin: 0; }
   .langbar button { font: 600 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; padding: 3px 12px; border-radius: 5px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
@@ -131,7 +130,7 @@
 </head>
 <body>
 <div class="window">
-  <header class="titlebar"><div class="lights" aria-hidden="true"><i></i><i></i><i></i></div><div class="title">Zone Stretch — Tutorial</div><nav class="langbar" aria-label="Language"><button data-l="en">EN</button><button data-l="id">ID</button></nav></header>
+  <header class="titlebar"><div class="title">Zone Stretch — Tutorial</div><nav class="langbar" aria-label="Language"><button data-l="en">EN</button><button data-l="id">ID</button></nav></header>
   <div class="split">
     <aside class="sidebar"><div class="inner">
       <div class="side-app"><img src="images/zone-stretch-logo.png" alt=""><div><b>Zone Stretch</b><span>Tutorial · 1.4.0</span></div></div>
@@ -155,7 +154,7 @@
 <header class="hero">
     <img src="images/zone-stretch-logo.png" alt="Zone Stretch logo">
     <div>
-      <h1>Zone Stretch</h1>
+      <a class="brand" href="https://andidewanto.github.io/sketchup-extensions/" title="Andi Dewanto"><img src="images/brand-andidewanto.png" alt="Andi Dewanto logo"></a><h1>Zone Stretch</h1>
       <p class="sub en">Stretch or shrink only the part of an object between two limits — everything outside keeps its exact shape.</p>
       <p class="sub id">Memanjangkan atau memendekkan hanya bagian objek di antara dua batas — bagian di luar zona tetap utuh.</p>
     </div>

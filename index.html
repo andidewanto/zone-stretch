@@ -24,11 +24,10 @@
   body { margin:0; background:var(--desk); color:var(--ink); font:15px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  .window { max-width: 1120px; margin: 28px auto; background: var(--win); border-radius: 12px; box-shadow: var(--shadow); overflow: clip; border: 1px solid var(--line); }
+  .window { background: var(--win); min-height: 100vh; }
+  .brand { display: block; width: 60px; height: 60px; margin: 0 0 10px; }
+  .brand img, .hero .brand img { width: 100%; height: 100%; display: block; }
   .titlebar { position: sticky; top: 0; z-index: 5; height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 14px; background: color-mix(in srgb, var(--bar) 88%, transparent); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
-  .lights { display: flex; gap: 8px; flex: none; }
-  .lights i { width: 12px; height: 12px; border-radius: 50%; display: block; background: #ff5f57; box-shadow: inset 0 0 0 .5px rgba(0,0,0,.2); }
-  .lights i:nth-child(2) { background: #febc2e; } .lights i:nth-child(3) { background: #28c840; }
   .titlebar .title { flex: 1; text-align: center; font-weight: 600; font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .langbar { display: flex; flex: none; background: var(--sel); border-radius: 7px; padding: 2px; gap: 0; margin: 0; }
   .langbar button { font: 600 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; padding: 3px 12px; border-radius: 5px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
@@ -131,7 +130,7 @@
 </head>
 <body>
 <div class="window">
-  <header class="titlebar"><div class="lights" aria-hidden="true"><i></i><i></i><i></i></div><div class="title">Zone Stretch</div><nav class="langbar" aria-label="Language"><button data-l="en">EN</button><button data-l="id">ID</button></nav></header>
+  <header class="titlebar"><div class="title">Zone Stretch</div><nav class="langbar" aria-label="Language"><button data-l="en">EN</button><button data-l="id">ID</button></nav></header>
   <div class="split">
     <aside class="sidebar"><div class="inner">
       <div class="side-app"><img src="images/zone-stretch-logo.png" alt=""><div><b>Zone Stretch</b><span><span class="en">Version</span><span class="id">Versi</span> 1.4.0</span></div></div>
@@ -149,7 +148,7 @@
     </div></aside>
     <main class="content">
       <section id="overview">
-        <div class="hero"><img src="images/zone-stretch-logo.png" alt="Zone Stretch icon"><div><h1>Zone Stretch</h1><p class="sub"><span class="en">Stretch only the part you choose.</span><span class="id">Tarik hanya bagian yang Anda pilih.</span></p><p class="sub" style="font-size:13px"><span class="en">Free SketchUp extension · Windows &amp; macOS · SketchUp 2021+ · Version</span><span class="id">Extension SketchUp gratis · Windows &amp; macOS · SketchUp 2021+ · Versi</span> 1.4.0</p>
+        <div class="hero"><img src="images/zone-stretch-logo.png" alt="Zone Stretch icon"><div><a class="brand" href="https://andidewanto.github.io/sketchup-extensions/" title="Andi Dewanto"><img src="images/brand-andidewanto.png" alt="Andi Dewanto logo"></a><h1>Zone Stretch</h1><p class="sub"><span class="en">Stretch only the part you choose.</span><span class="id">Tarik hanya bagian yang Anda pilih.</span></p><p class="sub" style="font-size:13px"><span class="en">Free SketchUp extension · Windows &amp; macOS · SketchUp 2021+ · Version</span><span class="id">Extension SketchUp gratis · Windows &amp; macOS · SketchUp 2021+ · Versi</span> 1.4.0</p>
           <div class="btns"><a class="btn primary" href="downloads/ad_zone_stretch-1.4.0.rbz"><span class="en">Download</span><span class="id">Unduh</span> .rbz</a><a class="btn" href="tutorial.html">Tutorial</a></div></div></div>
         <p class="en">Make one part of a model longer or shorter — only between two limit planes — while everything outside keeps its exact shape. Pick a direction (red, green or blue plane), click limits A and B, then type the new length (<code>480</code>), a change (<code>+200</code>) or a shrink (<code>-100</code>). Works deep inside nested groups and components without exploding them; shared components stay shared.</p>
         <p class="id">Memanjangkan atau memendekkan satu bagian model — hanya di antara dua bidang batas — sementara bagian lain tetap utuh. Pilih arah (bidang merah, hijau atau biru), klik batas A dan B, lalu ketik panjang baru (<code>480</code>), penambahan (<code>+200</code>) atau pengurangan (<code>-100</code>). Bekerja di dalam grup dan komponen bersarang tanpa explode; komponen bersama tetap berbagi definisi.</p>
