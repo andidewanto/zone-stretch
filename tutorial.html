@@ -25,8 +25,8 @@
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
   .window { background: var(--win); min-height: 100vh; }
-  .brand { display: block; width: 60px; height: 60px; margin: 0 0 10px; }
-  .brand img, .hero .brand img { width: 100%; height: 100%; display: block; }
+  .brand { display: block; width: 100%; margin: 0 0 14px; padding: 0 6px; }
+  .brand img, .hero .brand img { width: 100%; height: auto; display: block; }
   .titlebar { position: sticky; top: 0; z-index: 5; height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 14px; background: color-mix(in srgb, var(--bar) 88%, transparent); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
   .titlebar .title { flex: 1; text-align: center; font-weight: 600; font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .langbar { display: flex; flex: none; background: var(--sel); border-radius: 7px; padding: 2px; gap: 0; margin: 0; }
@@ -111,6 +111,7 @@
     .sidebar { border-right: 0; border-bottom: 1px solid var(--line); padding: 8px 10px; }
     .sidebar .inner { position: static; }
     .side-app { display: none; }
+    .brand { width: 72px; margin: 6px auto 10px; padding: 0; }
     .sidebar nav { display: flex; gap: 4px; overflow-x: auto; white-space: nowrap; }
     .side-sep { display: none; }
     .content { padding: 22px 16px 40px; }
@@ -133,6 +134,7 @@
   <header class="titlebar"><div class="title">Zone Stretch — Tutorial</div><nav class="langbar" aria-label="Language"><button data-l="en">EN</button><button data-l="id">ID</button></nav></header>
   <div class="split">
     <aside class="sidebar"><div class="inner">
+      <a class="brand" href="https://andidewanto.github.io/sketchup-extensions/" title="Andi Dewanto"><img src="images/brand-andidewanto.png" alt="Andi Dewanto logo"></a>
       <div class="side-app"><img src="images/zone-stretch-logo.png" alt=""><div><b>Zone Stretch</b><span>Tutorial · 1.4.0</span></div></div>
       <nav>
       <a href="./"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 7.2v4M8 4.8v.1" stroke-linecap="round"/></svg><span class="en">Overview</span><span class="id">Ringkasan</span></a>
@@ -154,7 +156,7 @@
 <header class="hero">
     <img src="images/zone-stretch-logo.png" alt="Zone Stretch logo">
     <div>
-      <a class="brand" href="https://andidewanto.github.io/sketchup-extensions/" title="Andi Dewanto"><img src="images/brand-andidewanto.png" alt="Andi Dewanto logo"></a><h1>Zone Stretch</h1>
+      <h1>Zone Stretch</h1>
       <p class="sub en">Stretch or shrink only the part of an object between two limits — everything outside keeps its exact shape.</p>
       <p class="sub id">Memanjangkan atau memendekkan hanya bagian objek di antara dua batas — bagian di luar zona tetap utuh.</p>
     </div>
