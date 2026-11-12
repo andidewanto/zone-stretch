@@ -16,7 +16,7 @@ Contact & bug reports: andidewanto@gmail.com
 
 ## Bahasa Indonesia
 
-Memanjangkan/memendekkan hanya bagian objek di antara dua bidang batas; bekerja di dalam grup dan komponen bersarang. Extension SketchUp gratis oleh Andi Dewanto — Windows & macOS, SketchUp 2021+. Versi **1.4.0**.
+Memanjangkan/memendekkan hanya bagian objek di antara dua bidang batas; bekerja di dalam grup dan komponen bersarang. Extension SketchUp gratis oleh Andi Dewanto · Windows & macOS, SketchUp 2021+. Versi **1.4.0**.
 
 - Situs: https://andidewanto.github.io/zone-stretch/
 - Unduh: [`downloads/ad_zone_stretch-1.4.0.rbz`](downloads/ad_zone_stretch-1.4.0.rbz)
