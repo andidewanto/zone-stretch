@@ -131,7 +131,7 @@
 </head>
 <body>
 <div class="window">
-  <header class="titlebar"><div class="title">Zone Stretch — Tutorial</div><nav class="langbar" aria-label="Language"><button data-l="en">EN</button><button data-l="id">ID</button></nav></header>
+  <header class="titlebar"><div class="title">Zone Stretch · Tutorial</div><nav class="langbar" aria-label="Language"><button data-l="en">EN</button><button data-l="id">ID</button></nav></header>
   <div class="split">
     <aside class="sidebar"><div class="inner">
       <a class="brand" href="https://andidewanto.github.io/sketchup-extensions/" title="Andi Dewanto"><img src="images/brand-andidewanto.png" alt="Andi Dewanto logo"></a>
@@ -160,7 +160,7 @@
     <img src="images/zone-stretch-logo.png" alt="Zone Stretch logo">
     <div>
       <h1>Zone Stretch</h1>
-      <p class="sub en">Stretch or shrink only the part of an object between two limits — everything outside keeps its exact shape.</p>
+      <p class="sub en">Stretch or shrink only the part of an object between two limits. Everything outside keeps its exact shape.</p>
       <p class="sub id">Memanjangkan atau memendekkan hanya bagian objek di antara dua batas: bagian di luar zona tetap utuh.</p>
     </div>
   </header>
@@ -186,12 +186,12 @@
   <h2 id="s2"><span class="en">2. Stretch step by step</span><span class="id">2. Langkah demi langkah</span></h2>
   <figure><img src="images/zone-stretch-2-how-it-works.png" alt="Zone Stretch Tool: direction planes and limits A and B"></figure>
   <ol class="en">
-    <li><b>Select one group or component</b> — the object you want to change.</li>
+    <li><b>Select one group or component</b>: the object you want to change.</li>
     <li>Start <b>Extensions › Zone Stretch › Zone Stretch Tool</b> (or the toolbar button, or right-click).</li>
     <li><b>Choose the direction.</b> Red, green and blue planes appear across the object. Hover one to highlight it and click: red = width, green = depth, blue = height. The arrow keys work too: <kbd>→</kbd> red, <kbd>←</kbd> green, <kbd>↑</kbd> blue.</li>
     <li><b>Place limit A.</b> The plane follows the cursor and snaps to points, edges and faces like the Move tool. Click where the zone should start.</li>
     <li><b>Place limit B.</b> Click a second point, or type the exact distance from A and press <kbd>Enter</kbd>. The live distance is shown next to the planes and in the Measurements box.</li>
-    <li><b>Set the new zone length</b> — type it and press <kbd>Enter</kbd>, or move the mouse to preview and click. The tool closes when it is done.</li>
+    <li><b>Set the new zone length</b>: type it and press <kbd>Enter</kbd>, or move the mouse to preview and click. The tool closes when it is done.</li>
   </ol>
   <ol class="id">
     <li><b>Pilih satu grup atau komponen</b>: objek yang ingin diubah.</li>
@@ -201,7 +201,7 @@
     <li><b>Pasang batas B.</b> Klik titik kedua, atau ketik jarak tepat dari A lalu <kbd>Enter</kbd>. Jarak tampil di samping bidang dan di kotak Measurements.</li>
     <li><b>Tentukan panjang zona baru</b>: ketik lalu <kbd>Enter</kbd>, atau gerakkan mouse untuk pratinjau lalu klik. Alat tertutup otomatis setelah selesai.</li>
   </ol>
-  <div class="tip en"><b>Tip:</b> you never need to click the Measurements box — just type while the tool is active.</div>
+  <div class="tip en"><b>Tip:</b> you never need to click the Measurements box. Just type while the tool is active.</div>
   <div class="tip id"><b>Tips:</b> kotak Measurements tidak perlu diklik: langsung ketik saat alat aktif.</div>
 
   <h2 id="s3"><span class="en">3. Three ways to type the length</span><span class="id">3. Tiga cara mengetik panjang</span></h2>
@@ -225,10 +225,10 @@
 
   <h2 id="s5"><span class="en">5. What happens to the model</span><span class="id">5. Apa yang terjadi pada model</span></h2>
   <ul class="en">
-    <li>Parts that <b>cross</b> the zone are stretched; parts <b>beyond</b> it only move; parts <b>before</b> it stay put — at any depth of nested groups and components, without exploding anything.</li>
+    <li>Parts that <b>cross</b> the zone are stretched; parts <b>beyond</b> it only move; parts <b>before</b> it stay put, at any depth of nested groups and components, without exploding anything.</li>
     <li>Copies of the same component that change the same way keep sharing one definition; copies outside the object are never touched.</li>
     <li>Arcs, curves, smooth surfaces, materials and textures keep their shape outside the zone. Text, dimensions, guides, images and section planes move along.</li>
-    <li>The limit planes are drawn on screen only — nothing is added to the model.</li>
+    <li>The limit planes are drawn on screen only. Nothing is added to the model.</li>
     <li>Locked objects are refused (right-click › Unlock first).</li>
   </ul>
   <ul class="id">
